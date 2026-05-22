@@ -7,8 +7,11 @@ CLI package manager for decentralized code doctrine packages.
 This unscoped package acts as:
 
 - a generic npm entrypoint for the code-doctrine ecosystem
+- the shared installer client for doctrine packages
 - the first public convention for resolving and installing developer-published doctrine packages
-- a thin client for decentralized doctrine packages published by individual developers
+
+Developer doctrine repos are expected to be **plain doctrine packages**.
+The shared CLI fetches them and performs the actual OpenCode or Pi installation.
 
 ## Quick start
 
@@ -37,7 +40,7 @@ For `code-doctrine install <author> ...`, v1 resolves in this order:
 1. npm package `@<author>/code-doctrine`
 2. GitHub fallback `github:<author>/code-doctrine`
 
-So for `kamilchm`, the manager tries:
+So for `kamilchm`, the client tries:
 
 - `@kamilchm/code-doctrine`
 - then `github:kamilchm/code-doctrine`
@@ -53,10 +56,21 @@ npx code-doctrine spec
 ```
 
 - `resolve` shows the resolved source for a developer id
-- `info` prints the resolved package plus available npm metadata
+- `info` prints the resolved package plus available doctrine metadata
 - `search` lists npm packages that match the public `code-doctrine` naming convention
 - `doctor` checks the local environment and optionally shows author resolution
 - `spec` prints the v1 doctrine package convention summary
+
+## Plain doctrine packages
+
+A developer package should contain:
+
+- doctrine content
+- `doctrine.json`
+- npm package metadata for publish
+
+It should not contain harness-specific installer logic.
+That responsibility belongs to this CLI.
 
 ## Standard
 
@@ -64,24 +78,11 @@ The package convention for developer-published doctrines is documented in:
 
 - `STANDARD.md`
 
-In short, a developer package should:
-
-- expose a `code-doctrine` executable
-- support `install opencode|pi|all`
-- ship doctrine skill content in a stable layout
-- own its AGENTS markers and installer behavior
-
 ## Current recommended package
 
-For Kamil Chmielewski's implementation, the concrete doctrine package is:
+For Kamil Chmielewski's implementation, the doctrine package is:
 
 - `@kamilchm/code-doctrine`
-
-Direct usage still works too:
-
-```bash
-npx @kamilchm/code-doctrine install opencode --project
-```
 
 ## Website and portal note
 
