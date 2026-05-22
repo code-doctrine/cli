@@ -1,0 +1,42 @@
+{
+  "name": "code-doctrine",
+  "version": "0.1.0",
+  "description": "CLI package manager for decentralized code doctrine packages",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "code-doctrine",
+    "agents",
+    "skills",
+    "decentralized",
+    "package-manager",
+    "cli"
+  ],
+  "bin": {
+    "code-doctrine": "cli.mjs"
+  },
+  "files": [
+    "cli.mjs",
+    "README.md",
+    "STANDARD.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "scripts": {
+    "check": "node --check cli.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-doctrine/cli.git"
+  },
+  "homepage": "https://github.com/code-doctrine/cli",
+  "bugs": {
+    "url": "https://github.com/code-doctrine/cli/issues"
+  }
+}
