@@ -8,6 +8,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: npm
     permissions:
       contents: read
       id-token: write
@@ -27,4 +28,4 @@ jobs:
           npm pack --dry-run
 
       - name: Publish to npm
-        run: npm publish --provenance
+        run: npm publish
