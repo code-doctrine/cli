@@ -479,6 +479,7 @@ const command = args.shift();
 if (command === 'install') {
   const author = args.shift();
   installResolvedDoctrine(author ?? '', args);
+  process.exit(0);
 }
 if (command === 'resolve') {
   const author = args.shift();
