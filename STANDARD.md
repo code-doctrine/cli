@@ -75,7 +75,7 @@ Recommended shape:
 - `author` — developer or publisher id
 - `description` — short description
 - `skillPath` — relative path from package root to the doctrine skill directory; all files under this directory are installed recursively
-- `agentsSectionFile` — file inside `skillPath` that contains the managed AGENTS block body
+- `agentsSectionFile` — file relative to the package root that contains the managed AGENTS block body; this is integration metadata and should usually live outside `skill/`
 - `managedAgentsMarkers` — doctrine-owned markers used when merging AGENTS content
 
 ## Recommended package layout
@@ -85,7 +85,6 @@ The recommended layout keeps installable doctrine files under `skill/` and leave
 ```text
 skill/
   SKILL.md
-  AGENTS-section.md
   coding-foundations-reference.md
   database-reference.md
   system-architecture-reference.md
@@ -95,6 +94,7 @@ skill/
   change-safety-reference.md
   testing-reference.md
   enforcement-reference.md
+AGENTS-section.md
 doctrine.json
 package.json
 README.md

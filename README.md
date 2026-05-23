@@ -60,8 +60,9 @@ This is the intended workflow for customization:
 1. find a doctrine you like
 2. fork or clone it locally
 3. change the doctrine files under `skill/`
-4. reinstall from local files until it behaves the way you want
-5. publish it later only if you want to share it
+4. adjust root integration metadata such as `AGENTS-section.md` if needed
+5. reinstall from local files until it behaves the way you want
+6. publish it later only if you want to share it
 
 ## Resolution strategy
 
@@ -93,6 +94,7 @@ npx code-doctrine spec
 A doctrine package should contain:
 
 - a dedicated `skill/` directory with all installable doctrine files
+- `AGENTS-section.md` at the repo root for CLI integration into target `AGENTS.md`
 - `doctrine.json`
 - root package metadata for publish and documentation
 
