@@ -1,4 +1,4 @@
-# Code Doctrine Package Standard (v1)
+# Code Doctrine Package Standard (v2)
 
 This document defines the first public convention for developer-published code doctrine packages.
 
@@ -42,7 +42,7 @@ The shared `code-doctrine` CLI owns installation into OpenCode, Pi, and other fu
 A doctrine package must include:
 
 - `doctrine.json`
-- doctrine content files referenced by the manifest
+- a dedicated doctrine skill directory referenced by the manifest
 - `package.json`
 
 ## Required manifest
@@ -53,25 +53,12 @@ Recommended shape:
 
 ```json
 {
-  "specVersion": 1,
+  "specVersion": 2,
   "name": "code-doctrine",
   "title": "Code Doctrine",
   "author": "kamilchm",
   "description": "Short doctrine description",
-  "skillPath": ".",
-  "skillFiles": [
-    "SKILL.md",
-    "AGENTS-section.md",
-    "coding-foundations-reference.md",
-    "database-reference.md",
-    "system-architecture-reference.md",
-    "operability-reference.md",
-    "documentation-reference.md",
-    "user-interface-reference.md",
-    "change-safety-reference.md",
-    "testing-reference.md",
-    "enforcement-reference.md"
-  ],
+  "skillPath": "skill",
   "agentsSectionFile": "AGENTS-section.md",
   "managedAgentsMarkers": {
     "start": "<!-- code-doctrine:managed:start -->",
@@ -87,30 +74,31 @@ Recommended shape:
 - `title` — human title
 - `author` — developer or publisher id
 - `description` — short description
-- `skillPath` — relative path from package root to the doctrine files root
-- `skillFiles` — exact doctrine files to install into the target harness
-- `agentsSectionFile` — file that contains the managed AGENTS block body
+- `skillPath` — relative path from package root to the doctrine skill directory; all files under this directory are installed recursively
+- `agentsSectionFile` — file inside `skillPath` that contains the managed AGENTS block body
 - `managedAgentsMarkers` — doctrine-owned markers used when merging AGENTS content
 
 ## Recommended package layout
 
-The simplest recommended layout is a repo-root doctrine package:
+The recommended layout keeps installable doctrine files under `skill/` and leaves packaging or code-doctrine-specific metadata at the repo root:
 
 ```text
-SKILL.md
-AGENTS-section.md
-coding-foundations-reference.md
-database-reference.md
-system-architecture-reference.md
-operability-reference.md
-documentation-reference.md
-user-interface-reference.md
-change-safety-reference.md
-testing-reference.md
-enforcement-reference.md
+skill/
+  SKILL.md
+  AGENTS-section.md
+  coding-foundations-reference.md
+  database-reference.md
+  system-architecture-reference.md
+  operability-reference.md
+  documentation-reference.md
+  user-interface-reference.md
+  change-safety-reference.md
+  testing-reference.md
+  enforcement-reference.md
 doctrine.json
 package.json
 README.md
+LICENSE
 ```
 
 ## Stability rules
@@ -118,13 +106,14 @@ README.md
 - `code-doctrine` is the stable shared client executable name
 - `install <author>` is the stable shared client entrypoint
 - doctrine packages are plain content packages, not installer CLIs
-- `doctrine.json` is the public manifest contract in v1
+- `doctrine.json` is the public manifest contract in v2
+- installable doctrine files should live under a dedicated `skill/` directory rather than mixed into the repo root
 - doctrine-specific AGENTS markers must be owned by the doctrine package itself
 - a doctrine package should not depend on private predecessor names or migration history in its public standard surface
 
-## Scope of v1
+## Scope of v2
 
-v1 intentionally avoids:
+v2 intentionally avoids:
 
 - a central registry service
 - signed metadata

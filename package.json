@@ -1,6 +1,6 @@
 {
   "name": "code-doctrine",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "CLI package manager for decentralized code doctrine packages",
   "license": "MIT",
   "type": "module",
@@ -18,6 +18,8 @@
   "files": [
     "cli.mjs",
     "lib",
+    "code-doctrine-hero.svg",
+    "code-doctrine-hero-light.svg",
     "README.md",
     "STANDARD.md",
     "LICENSE",

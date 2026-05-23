@@ -1,0 +1,47 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Code Doctrine</title>
+  <desc id="desc">A simple product-style hero for Code Doctrine, a reusable doctrine for coding agents.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#EEF2FF"/>
+    </linearGradient>
+    <linearGradient id="card" x1="220" y1="170" x2="1380" y2="730" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F8FAFC"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <rect x="220" y="170" width="1160" height="560" rx="40" fill="url(#card)" stroke="#E2E8F0" stroke-width="2"/>
+
+  <g>
+    <rect x="340" y="305" width="230" height="230" rx="44" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+    <rect x="382" y="349" width="146" height="166" rx="22" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+    <rect x="407" y="382" width="92" height="12" rx="6" fill="#2563EB"/>
+    <rect x="407" y="414" width="64" height="12" rx="6" fill="#7C3AED"/>
+    <rect x="407" y="446" width="104" height="12" rx="6" fill="#059669"/>
+    <circle cx="520" cy="366" r="19" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.5"/>
+    <path d="M520 355V377" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+    <path d="M509 366H531" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <text x="640" y="395" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="96" font-weight="700">Code Doctrine</text>
+  <text x="640" y="458" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="40">Reusable doctrine for coding agents</text>
+
+  <g>
+    <rect x="640" y="515" width="150" height="56" rx="28" fill="#DBEAFE" stroke="#60A5FA" stroke-width="2"/>
+    <text x="715" y="551" fill="#1D4ED8" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">install</text>
+
+    <rect x="814" y="515" width="204" height="56" rx="28" fill="#F5F3FF" stroke="#A78BFA" stroke-width="2"/>
+    <text x="916" y="551" fill="#6D28D9" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">customize</text>
+
+    <rect x="1042" y="515" width="136" height="56" rx="28" fill="#ECFDF5" stroke="#34D399" stroke-width="2"/>
+    <text x="1110" y="551" fill="#047857" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">share</text>
+  </g>
+
+  <rect x="340" y="618" width="920" height="74" rx="24" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+  <text x="800" y="666" fill="#0F172A" font-family="JetBrains Mono, Consolas, monospace" font-size="34" text-anchor="middle">npx code-doctrine install</text>
+</svg>

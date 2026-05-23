@@ -1,30 +1,34 @@
 # code-doctrine
 
-CLI package manager for decentralized code doctrine packages.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./code-doctrine-hero.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./code-doctrine-hero-light.svg">
+  <img alt="Code Doctrine hero" src="./code-doctrine-hero-light.svg">
+</picture>
 
-## What this package is
+CLI package manager for reusable code doctrine packages.
 
-This unscoped package acts as:
+## What it does
 
-- a generic npm entrypoint for the code-doctrine ecosystem
-- the shared installer client for doctrine packages
-- the first public convention for resolving and installing developer-published doctrine packages
+`code-doctrine` is the shared client for the Code Doctrine ecosystem.
 
-Developer doctrine repos are expected to be **plain doctrine packages**.
-The shared CLI fetches them and performs the actual OpenCode or Pi installation.
+It lets you:
+
+- resolve doctrine packages from npm or GitHub
+- install them into OpenCode or Pi
+- fork a doctrine into a local working directory
+- customize a doctrine locally before publishing anything
+- inspect doctrine metadata from npm, GitHub, or local files
+
+Developer doctrine repos should stay plain doctrine packages.
+This CLI owns installation and environment wiring.
 
 ## Quick start
 
-Install Kamil Chmielewski's doctrine package into an OpenCode project:
+Install Kamil Chmielewski's doctrine into an OpenCode project:
 
 ```bash
 npx code-doctrine install kamilchm opencode --project
-```
-
-Install it globally for OpenCode instead:
-
-```bash
-npx code-doctrine install kamilchm opencode --global
 ```
 
 Install it for Pi:
@@ -33,27 +37,9 @@ Install it for Pi:
 npx code-doctrine install kamilchm pi
 ```
 
-Install a locally customized doctrine package into an OpenCode project:
-
-```bash
-npx code-doctrine install ./my-doctrine opencode --project
-```
-
-## Resolution strategy
-
-For `code-doctrine install <author> ...`, v1 resolves in this order:
-
-1. npm package `@<author>/code-doctrine`
-2. GitHub fallback `github:<author>/code-doctrine`
-
-So for `kamilchm`, the client tries:
-
-- `@kamilchm/code-doctrine`
-- then `github:kamilchm/code-doctrine`
-
 ## Local development workflow
 
-You do not need to publish a doctrine to npm or GitHub before trying your own changes.
+You do not need to publish a doctrine before trying your own changes.
 
 A typical local loop looks like this:
 
@@ -63,68 +49,73 @@ npx code-doctrine fork kamilchm ./my-doctrine
 npx code-doctrine install ./my-doctrine opencode --project
 ```
 
-That lets you discover someone else's doctrine, fork it into a local directory, customize it, and install it directly from local files.
-
-You can also clone or fork a doctrine repository yourself with git and install it from that working tree path:
+You can also clone or fork a doctrine repo yourself and install it directly from the working tree:
 
 ```bash
 npx code-doctrine install ./path-to-your-local-doctrine pi --project
 ```
 
-## Other commands
+This is the intended workflow for customization:
+
+1. find a doctrine you like
+2. fork or clone it locally
+3. change the doctrine files under `skill/`
+4. reinstall from local files until it behaves the way you want
+5. publish it later only if you want to share it
+
+## Resolution strategy
+
+For `code-doctrine install <author> ...`, the client resolves in this order:
+
+1. npm package `@<author>/code-doctrine`
+2. GitHub fallback `github:<author>/code-doctrine`
+3. local doctrine directory path such as `./my-doctrine`
+
+So for `kamilchm`, the client tries:
+
+- `@kamilchm/code-doctrine`
+- then `github:kamilchm/code-doctrine`
+
+## Commands
 
 ```bash
-npx code-doctrine resolve kamilchm
-npx code-doctrine info kamilchm
-npx code-doctrine fork kamilchm ./my-doctrine
+npx code-doctrine install <author|path> [opencode|pi|all] [...flags]
+npx code-doctrine resolve <author|path>
+npx code-doctrine info <author|path>
+npx code-doctrine fork <author|path> [dest-dir] [--force]
 npx code-doctrine search
-npx code-doctrine doctor kamilchm
+npx code-doctrine doctor [author|path]
 npx code-doctrine spec
 ```
 
-- `resolve` shows the resolved source for a developer id or local path
-- `info` prints the resolved package plus available doctrine metadata
-- `fork` materializes a doctrine into a local directory so you can customize it before publishing anything
-- `search` lists npm packages that match the public `code-doctrine` naming convention
-- `doctor` checks the local environment and optionally shows author resolution
-- `spec` prints the v1 doctrine package convention summary
+## Doctrine package layout
 
-## Plain doctrine packages
+A doctrine package should contain:
 
-A developer package should contain:
-
-- doctrine content
+- a dedicated `skill/` directory with all installable doctrine files
 - `doctrine.json`
-- npm package metadata for publish
+- root package metadata for publish and documentation
 
 It should not contain harness-specific installer logic.
-That responsibility belongs to this CLI.
-
-That separation also makes local development simpler: you can edit a plain doctrine package in a normal working tree and reinstall it from local files without having to publish every iteration.
+That separation keeps doctrine packages easy to edit locally and easy to reuse.
 
 ## Standard
 
-The package convention for developer-published doctrines is documented in:
+The package convention is documented in:
 
-- `STANDARD.md`
+- [`STANDARD.md`](./STANDARD.md)
 
 ## Current recommended package
 
-For Kamil Chmielewski's implementation, the doctrine package is:
+For Kamil Chmielewski's public implementation:
 
 - `@kamilchm/code-doctrine`
-
-## Website and portal note
-
-The public website and portal are separate from this CLI. This repository is only the package manager and standard client.
+- <https://github.com/kamilchm/code-doctrine>
 
 ## Publishing
 
-This repo includes a GitHub Actions publish workflow in `.github/workflows/publish.yml`.
-It is configured for npm trusted publishing via GitHub OIDC, so no `NPM_TOKEN` secret is required.
-The workflow uses the GitHub Actions environment named `npm`, which should also be configured as the environment name in npm trusted publisher settings.
-It also clears `NODE_AUTH_TOKEN` in the publish step to avoid `actions/setup-node` interfering with npm OIDC trusted publishing.
-Publish via GitHub release or manual workflow dispatch.
+This repo publishes to npm through GitHub Actions OIDC trusted publishing.
+No `NPM_TOKEN` secret is required.
 
 ## License
 
