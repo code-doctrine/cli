@@ -1,6 +1,6 @@
 {
   "name": "code-doctrine",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI package manager for decentralized code doctrine packages",
   "license": "MIT",
   "type": "module",
