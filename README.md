@@ -93,6 +93,7 @@ The public website and portal are separate from this CLI. This repository is onl
 This repo includes a GitHub Actions publish workflow in `.github/workflows/publish.yml`.
 It is configured for npm trusted publishing via GitHub OIDC, so no `NPM_TOKEN` secret is required.
 The workflow uses the GitHub Actions environment named `npm`, which should also be configured as the environment name in npm trusted publisher settings.
+It also clears `NODE_AUTH_TOKEN` in the publish step to avoid `actions/setup-node` interfering with npm OIDC trusted publishing.
 Publish via GitHub release or manual workflow dispatch.
 
 ## License
