@@ -114,6 +114,12 @@ For Kamil Chmielewski's public implementation:
 - `@kamilchm/code-doctrine`
 - <https://github.com/kamilchm/code-doctrine>
 
+## More details
+
+For the full story behind Code Doctrine — why it exists, how it evolved, and how local customization fits in — read the announcement article:
+
+- [Code Doctrine: The Reusable Version of My AI Coding Constitution](https://kamil.chm.ski/code-doctrine-the-reusable-version-of-my-ai-coding-constitution)
+
 ## Publishing
 
 This repo publishes to npm through GitHub Actions OIDC trusted publishing.
