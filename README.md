@@ -33,6 +33,12 @@ Install it for Pi:
 npx code-doctrine install kamilchm pi
 ```
 
+Install a locally customized doctrine package into an OpenCode project:
+
+```bash
+npx code-doctrine install ./my-doctrine opencode --project
+```
+
 ## Resolution strategy
 
 For `code-doctrine install <author> ...`, v1 resolves in this order:
@@ -45,18 +51,40 @@ So for `kamilchm`, the client tries:
 - `@kamilchm/code-doctrine`
 - then `github:kamilchm/code-doctrine`
 
+## Local development workflow
+
+You do not need to publish a doctrine to npm or GitHub before trying your own changes.
+
+A typical local loop looks like this:
+
+```bash
+npx code-doctrine fork kamilchm ./my-doctrine
+# edit files inside ./my-doctrine
+npx code-doctrine install ./my-doctrine opencode --project
+```
+
+That lets you discover someone else's doctrine, fork it into a local directory, customize it, and install it directly from local files.
+
+You can also clone or fork a doctrine repository yourself with git and install it from that working tree path:
+
+```bash
+npx code-doctrine install ./path-to-your-local-doctrine pi --project
+```
+
 ## Other commands
 
 ```bash
 npx code-doctrine resolve kamilchm
 npx code-doctrine info kamilchm
+npx code-doctrine fork kamilchm ./my-doctrine
 npx code-doctrine search
 npx code-doctrine doctor kamilchm
 npx code-doctrine spec
 ```
 
-- `resolve` shows the resolved source for a developer id
+- `resolve` shows the resolved source for a developer id or local path
 - `info` prints the resolved package plus available doctrine metadata
+- `fork` materializes a doctrine into a local directory so you can customize it before publishing anything
 - `search` lists npm packages that match the public `code-doctrine` naming convention
 - `doctor` checks the local environment and optionally shows author resolution
 - `spec` prints the v1 doctrine package convention summary
@@ -71,6 +99,8 @@ A developer package should contain:
 
 It should not contain harness-specific installer logic.
 That responsibility belongs to this CLI.
+
+That separation also makes local development simpler: you can edit a plain doctrine package in a normal working tree and reinstall it from local files without having to publish every iteration.
 
 ## Standard
 

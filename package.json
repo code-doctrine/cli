@@ -17,13 +17,14 @@
   },
   "files": [
     "cli.mjs",
+    "lib",
     "README.md",
     "STANDARD.md",
     "LICENSE",
     "package.json"
   ],
   "scripts": {
-    "check": "node --check cli.mjs"
+    "check": "node --check cli.mjs && find lib -name '*.mjs' -print0 | xargs -0 -n1 node --check"
   },
   "engines": {
     "node": ">=20"
